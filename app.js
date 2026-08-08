@@ -21,7 +21,7 @@ submit.addEventListener("click", async (event) => {
         event.preventDefault()
 
         const { error } = await client
-            .from(' ')
+            .from('students_data')
             .insert([{
                 name: studentNames.value,
                 course: course.value,
@@ -31,6 +31,6 @@ submit.addEventListener("click", async (event) => {
             console.log(error)
     }
     catch (error) {
-        // console.log(error)
+        console.log(error)
     }
 })

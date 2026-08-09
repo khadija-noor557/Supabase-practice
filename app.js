@@ -17,8 +17,20 @@ let email = document.querySelector("#email")
 
 
 submit.addEventListener("click", async (event) => {
+
+
     try {
         event.preventDefault()
+
+        if (!studentNames.value || !course.value || !email.value) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "fill your data",
+
+            });
+            return
+        }
 
         const { error } = await client
             .from('students_data')
@@ -28,7 +40,13 @@ submit.addEventListener("click", async (event) => {
                 email_address: email.value,
 
             }])
-            console.log(error)
+
+        Swal.fire({
+            title: "student added succuccesfully !",
+            icon: "success",
+            draggable: true
+        });
+        console.log(error)
     }
     catch (error) {
         console.log(error)

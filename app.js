@@ -51,4 +51,58 @@ submit.addEventListener("click", async (event) => {
     catch (error) {
         console.log(error)
     }
+
+    studentNames.value = "";
+    course.value = "";
+    email.value = "";
 })
+
+// getAlldata
+
+const getAllData = async()=>{
+   try{
+     const { data, error } = await client
+  .from('students_data')
+  .select()
+  console.log(data);
+  console.log(error);
+   }
+   catch(error){
+    console.log(error);
+   }
+}
+
+getAllData();
+
+// getOne
+
+const getOne = async()=>{
+   try{
+     const { data, error } = await client
+  .from('students_data')
+  .select().eq("name","khadija")
+  console.log(data);
+  console.log(error);
+   }
+   catch(error){
+    console.log(error);
+   }
+} 
+getOne()
+
+// justName
+
+const justName = async()=>{
+   try{
+     const { data, error } = await client
+  .from('students_data')
+  .select("name")
+  console.log(data);
+  console.log(error);
+   }
+   catch(error){
+    console.log(error);
+   }
+} 
+
+justName()

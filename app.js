@@ -69,23 +69,45 @@ if (window.location.pathname == "/allstudent.html") {
             // card section
             data.forEach((student) => {
                 studentData.innerHTML += `
-                <div class=" col-md-4 card mb-3 " style="width: 18rem;">
+                <div class=" col-md-4 card mb-3 style="width: 18rem;">
   <div class="card-body">
-      <h1 class="card-title">${student.name}</h1>
-    <h1 class="card-title">${student.course}</h1>
+      <h2 class="card-title">${student.name}</h2>
+    <h4 class="card-title">${student.course}</h4>
     <p class="card-text">${student.email_address}</p>
-    <button onclick = update()><a href="#" class="btn" >Edit</a></button>
+    <button onclick = update(${student.id})><a href="#" class="btn" >Edit</a></button>
     <button onclick =()><a href="#" class="btn" >Delete</a></button>
   </div>
 </div>`;
 
             });
 
-            window.update = async(id) => {
-                const { error } = await supabase
+            window.update = async (id) => {
+
+                const { data } = await client
                     .from('students_data')
-                    .update({ name: 'piano' })
-                    .eq('id', id)
+                    .select()
+                    .eq("id", id)
+                console.log(data);
+
+                let {name,course,email_address} = data[0];
+                console.log(name,course,email_address)
+                const { value: formValues } = await Swal.fire({
+                    title: "Edit Student Data",
+                    html: `
+   Name: <input id="swal-input1" class="swal2-input">
+   Course: <input id="swal-input2" class="swal2-input">
+   Email: <input id="swal-input3" class="swal2-input">
+  `,
+                    focusConfirm: false,
+                    preConfirm: () => {
+                        return [document.getElementById("swal-input1").value, document.getElementById("swal-input2").value];
+                    }
+                });
+                if (formValues) Swal.fire(JSON.stringify(formValues));
+                // const { error } = await client
+                //     .from('students_data')
+                //     .update({ name: 'piano' })
+                //     .eq('id', id)
             }
         }
         catch (error) {

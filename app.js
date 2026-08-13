@@ -9,16 +9,14 @@ console.log(client);
 
 // collecting data
 
-let submit = document.querySelector("#submitBtn")
-
+let submitBtn = document.querySelector("#submitBtn")
 let studentNames = document.querySelector("#stu")
 let course = document.querySelector("#cou")
 let email = document.querySelector("#email")
 
 
-submit.addEventListener("click", async (event) => {
+submitBtn.addEventListener("click", async (event) => {
 
-if(window){
     try {
         event.preventDefault()
 
@@ -48,8 +46,6 @@ if(window){
         });
         console.log(error)
     }
-}
-    
     catch (error) {
         console.log(error)
     }

@@ -10,8 +10,8 @@ console.log(client);
 // collecting data
 
 let submitBtn = document.querySelector("#submitBtn")
-let studentNames = document.querySelector("#stu")
-let course = document.querySelector("#cou")
+let studentNames = document.querySelector("#student")
+let course = document.querySelector("#course")
 let email = document.querySelector("#email")
 
 submitBtn && submitBtn.addEventListener("click", async (event) => {
@@ -75,7 +75,7 @@ if (window.location.pathname == "/allstudent.html") {
     <h4 class="card-title">${student.course}</h4>
     <p class="card-text">${student.email_address}</p>
     <button onclick = update(${student.id})><a href="#" class="btn" >Edit</a></button>
-    <button onclick =()><a href="#" class="btn" >Delete</a></button>
+    <button onclick =removeStudent(${student.id})><a href="#" class="btn" >Delete</a></button>
   </div>
 </div>`;
 
@@ -89,26 +89,46 @@ if (window.location.pathname == "/allstudent.html") {
                     .eq("id", id)
                 console.log(data);
 
-                let {name,course,email_address} = data[0];
-                console.log(name,course,email_address)
+                let { name, course, email_address } = data[0];
+                console.log(name, course, email_address)
                 const { value: formValues } = await Swal.fire({
                     title: "Edit Student Data",
                     html: `
-   Name: <input id="swal-input1" class="swal2-input">
-   Course: <input id="swal-input2" class="swal2-input">
-   Email: <input id="swal-input3" class="swal2-input">
+   Name: <input id="swal-input1" class="swal2-input" value=${name}>
+   Course: <input id="swal-input2" class="swal2-input" value=${course}>
+   Email: <input id="swal-input3" class="swal2-input" value=${email_address}>
   `,
                     focusConfirm: false,
                     preConfirm: () => {
-                        return [document.getElementById("swal-input1").value, document.getElementById("swal-input2").value];
-                    }
+                        return [
+                            document.getElementById("swal-input1").value,
+                            document.getElementById("swal-input2").value,
+                            document.getElementById("swal-input3").value
+                        ];
+                    },
                 });
-                if (formValues) Swal.fire(JSON.stringify(formValues));
-                // const { error } = await client
-                //     .from('students_data')
-                //     .update({ name: 'piano' })
-                //     .eq('id', id)
+                console.log(formValues);
+
+                const updateData = {
+                    name: formValues[0],
+                    course: formValues[1],
+                    email_address: formValues[2]
+
+                }
+                const { error } = await client
+                    .from('students_data')
+                    .update(updateData)
+                    .eq('id', id)
+            };
+            window.removeStudent = async (studentId) => {
+                console.log("delete")
+                const response = await client
+                    .from('students_data')
+                    .delete()
+                    .eq('id', studentId)
+                
             }
+
         }
         catch (error) {
             console.log(error);

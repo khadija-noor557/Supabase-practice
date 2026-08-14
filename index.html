@@ -20,7 +20,7 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end text-center"  id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <!-- <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Register</a>
@@ -32,21 +32,23 @@
                 </div>
             </div>
         </nav>
-    </header> <br> <br>
+    </header>
 
-    <form >
-        <label>Student Name:
-            <input type="text" name="" id="student">
-        </label> <br><br>
-        <label>Course Name:
-            <input type="text" name="" id="course">
-        </label><br><br>
-        <label>Email address:
-            <input type="text" name="" id="email">
-        </label><br><br>
-    </form>
+    <div class="formContainer">
+        <form>
+            <label>Student Name:
+                <input type="text" name="" id="student">
+            </label>
+            <label>Course Name:
+                <input type="text" name="" id="course">
+            </label>
+            <label>Email address:
+                <input type="text" name="" id="email">
+            </label>
+        </form>
 
-    <button id="submitBtn">submit</button>
+        <button id="submitBtn">submit</button>
+    </div>
 
     <!-- supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

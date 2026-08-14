@@ -69,16 +69,19 @@ if (window.location.pathname == "/allstudent.html") {
             // card section
             data.forEach((student) => {
                 studentData.innerHTML += `
-                <div class=" col-md-4 card mb-3 style="width: 18rem;">
-  <div class="card-body">
-      <h2 class="card-title">${student.name}</h2>
-    <h4 class="card-title">${student.course}</h4>
-    <p class="card-text">${student.email_address}</p>
-    <button onclick = update(${student.id})><a href="#" class="btn" >Edit</a></button>
-    <button onclick =removeStudent(${student.id})><a href="#" class="btn" >Delete</a></button>
-  </div>
-</div>`;
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">${student.name}</h2>
+                    <h4 class="card-title">${student.course}</h4>
+                    <p class="card-text">${student.email_address}</p>
 
+                    <button onclick="update(${student.id})" class="btn ">Edit</button>
+                    <button onclick="removeStudent(${student.id})" class="btn ">Delete</button>
+                </div>
+            </div>
+        </div>
+    `;
             });
 
             window.update = async (id) => {
@@ -126,7 +129,7 @@ if (window.location.pathname == "/allstudent.html") {
                     .from('students_data')
                     .delete()
                     .eq('id', studentId)
-                
+
             }
 
         }

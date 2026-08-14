@@ -5,14 +5,151 @@
 
 }
 
-.header{
-    background-color: aqua !important;
+/* index.style */
+
+.formContainer {
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.formContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.formContainer label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.formContainer input {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.formContainer input:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+}
+
+#submitBtn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #6c63ff;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#submitBtn:hover {
+    background: #574fd6;
+    transform: translateY(-2px);
+}
+
+/* navbar */
+.header {
+    padding: 15px 30px;
+}
+
+.header .navbar {
+    background: #ffffff !important;
+    border-radius: 12px;
+    padding: 12px 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header .navbar-brand {
+    font-size: 24px;
+    font-weight: 700;
+    color: #6c63ff;
+}
+
+.header .nav-link {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333 !important;
+    padding: 10px 18px !important;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.header .nav-link:hover {
+    color: white !important;
+    background: #6c63ff;
+}
+
+/* All Students Section */
+
+.container {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.container h1 {
+    margin-bottom: 35px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
 }
 
 #students {
-    gap: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    margin-top: 20px;
 }
+
+/* Student Cards */
+
+#students .card {
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    background: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+}
+
+#students .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+#students .card-body {
+    padding: 20px;
+}
+
+#students .card-title {
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#students h4.card-title {
+    color: #6c63ff;
+    font-size: 18px;
+}
+
+#students .card-text {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+
+

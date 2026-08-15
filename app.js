@@ -76,8 +76,8 @@ if (window.location.pathname == "/allstudent.html") {
                     <h4 class="card-title">${student.course}</h4>
                     <p class="card-text">${student.email_address}</p>
 
-                    <button onclick="update(${student.id})" class="btn ">Edit</button>
-                    <button onclick="removeStudent(${student.id})" class="btn ">Delete</button>
+                    <button onclick="update(${student.id})" class="btn editBtn">Edit</button>
+                    <button onclick="removeStudent(${student.id})" class="btn dltBtn">Delete</button>
                 </div>
             </div>
         </div>
@@ -130,7 +130,7 @@ if (window.location.pathname == "/allstudent.html") {
                     .delete()
                     .eq('id', studentId)
 
-            }
+            };
 
         }
         catch (error) {

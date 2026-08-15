@@ -67,7 +67,7 @@ if (window.location.pathname.endsWith ("/allstudent.html")) {
             console.log(data);
             console.log(error);
 
-            // card section
+            // card section 
             data.forEach((student) => {
                 studentData.innerHTML += `
         <div class="col-md-4 mb-3">
@@ -123,6 +123,7 @@ if (window.location.pathname.endsWith ("/allstudent.html")) {
                     .from('students_data')
                     .update(updateData)
                     .eq('id', id)
+                    location.reload();
             };
             window.removeStudent = async (studentId) => {
                 console.log("delete")
@@ -130,7 +131,7 @@ if (window.location.pathname.endsWith ("/allstudent.html")) {
                     .from('students_data')
                     .delete()
                     .eq('id', studentId)
-
+location.reload();
             };
 
         }

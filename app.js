@@ -55,7 +55,7 @@ submitBtn && submitBtn.addEventListener("click", async (event) => {
 })
 
 // getAlldata
-if (window.location.pathname == "/allstudent.html") {
+if (window.location.pathname == "./allstudent.html") {
     const getAllData = async () => {
         try {
             const { data, error } = await client

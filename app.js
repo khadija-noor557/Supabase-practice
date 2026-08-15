@@ -1,4 +1,11 @@
-const supabaseUrl = "https://xmexfecjjalkhqtrlzzj.supabase.co"
+// Navbar
+fetch("navbar.html")
+    .then(response => response.text())
+    .then(data => {
+        document.querySelector("#navbar").innerHTML = data;
+    });
+
+const supabaseUrl = "https://xmexfecjjalkhqtrlzzj.supabase.co";
 const supabaseKey = "sb_publishable_MscDQGxX8gej_btcdCaQjA_6qODt-W8"
 
 
@@ -55,7 +62,7 @@ submitBtn && submitBtn.addEventListener("click", async (event) => {
 })
 
 // getAlldata
-if (window.location.pathname.endsWith ("/allstudent.html")) {
+if (window.location.pathname.endsWith("/enrolled.html")) {
     console.log("hello")
     const getAllData = async () => {
         try {
@@ -70,7 +77,7 @@ if (window.location.pathname.endsWith ("/allstudent.html")) {
             // card section 
             data.forEach((student) => {
                 studentData.innerHTML += `
-        <div class="col-md-4 mb-3">
+        <div class="col-md-5 mb-3">
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title">${student.name}</h2>
@@ -123,7 +130,7 @@ if (window.location.pathname.endsWith ("/allstudent.html")) {
                     .from('students_data')
                     .update(updateData)
                     .eq('id', id)
-                    location.reload();
+                location.reload();
             };
             window.removeStudent = async (studentId) => {
                 console.log("delete")
@@ -131,7 +138,7 @@ if (window.location.pathname.endsWith ("/allstudent.html")) {
                     .from('students_data')
                     .delete()
                     .eq('id', studentId)
-location.reload();
+                location.reload();
             };
 
         }
@@ -141,6 +148,91 @@ location.reload();
     };
     getAllData();
 }
+
+
+// register page
+
+let signupBtn = document.querySelector("#signup")
+let userEmail = document.querySelector("#email")
+let userPassword = document.querySelector("#password")
+let userConfirmPassword = document.querySelector("#confirmPassword")
+
+signupBtn && signupBtn.addEventListener("click", async (event) => {
+    event.preventDefault()
+
+    console.log(userEmail.value)
+    console.log(userPassword.value)
+    console.log(userConfirmPassword.value)
+
+    // empty fields check
+    if (!userEmail.value.trim() || !userPassword.value.trim() || !userConfirmPassword.value.trim()) {
+        Swal.fire({
+            icon: "warning",
+            title: "Almost there! 😊",
+            text: "Please fill in all the fields to continue.",
+            confirmButtonText: "Okay",
+            confirmButtonColor: "#0d6efd"
+        });
+
+        return;
+
+    }
+
+    // Password match check
+    if (userPassword.value !== userConfirmPassword.value) {
+        Swal.fire({
+            icon: "error",
+            title: "Passwords Don't Match 🔐",
+            text: "Please make sure both passwords are the same.",
+            confirmButtonText: "Try Again",
+            confirmButtonColor: "#0d6efd"
+        });
+
+        return;
+    }
+
+    try {
+        const { data, error } = await client.auth.signUp({
+            email: userEmail.value.trim(),
+            password: userPassword.value,
+        })
+
+        const userData = data.user
+        console.log(userData);
+
+
+        if (error) {
+            console.log(error);
+
+            Swal.fire({
+                icon: "error",
+                title: "Registration Failed",
+                text: error.message,
+                confirmButtonColor: "#0d6efd"
+            });
+
+            return;
+
+        }
+        console.log(data);
+
+        Swal.fire({
+            icon: "success",
+            title: "Registered Successfully! 🎉",
+            text: "Your account has been created.",
+            confirmButtonColor: "#0d6efd"
+        });
+
+        userEmail.value = "";
+        userPassword.value = "";
+        userConfirmPassword.value = "";
+    }
+    catch (error) {
+        console.log(error)
+    }
+
+
+})
 
 
 
